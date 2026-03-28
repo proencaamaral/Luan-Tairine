@@ -23,17 +23,10 @@
         padding: 20px;
         border-radius: 20px;
         max-width: 350px;
-        animation: fadeIn 1.5s ease;
       }
 
       h1 {
         font-size: 2.2em;
-        margin-bottom: 10px;
-      }
-
-      p {
-        font-size: 1.1em;
-        line-height: 1.6;
       }
 
       .bike {
@@ -50,13 +43,21 @@
         border-radius: 20px;
         font-size: 1em;
         cursor: pointer;
-        margin: 10px 5px;
+        margin-top: 15px;
+      }
+
+      #texto {
+        min-height: 120px;
+        margin-top: 10px;
+        font-size: 1.1em;
+        line-height: 1.6;
       }
 
       #final {
         display: none;
         margin-top: 10px;
         font-weight: bold;
+        font-size: 1.2em;
       }
 
       @keyframes moveBike {
@@ -70,17 +71,6 @@
           transform: translateX(-60px);
         }
       }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
     </style>
   </head>
 
@@ -88,34 +78,82 @@
     <div class="overlay">
       <h1>Tairine 💖</h1>
 
-      <p>5.1… e ainda parece que começou ontem.</p>
-
-      <p>
-        Desde aquele dia na adega , … quando você me chamou de
-        <strong>"laranja"</strong> 🍊 e a gente deu aquele abraço que já parecia
-        destino, eu ja tinha certeza que era, você !
-      </p>
+      <div id="texto"></div>
 
       <div class="bike">🚴‍♂️❤️🚴‍♀️</div>
 
-      <p>Hoje a gente pedala junto… e a vida ficou muito melhor com você.</p>
+      <button id="btn" onclick="iniciar()">Clica aqui ❤️</button>
 
-      <button onclick="mostrar()">Clica aqui ❤️</button>
-      <button onclick="musica()">Ouvir nossa música 🎵</button>
-
-      <p id="final">
-        Eu te amo, Meu amor. E quero continuar pedalando a vida inteira ao seu
+      <div id="final">
+        Eu te amo, meu amor. E quero continuar pedalando a vida inteira ao seu
         lado. ❤️
-      </p>
+      </div>
     </div>
 
+    <audio id="musica" loop>
+      <source src="musica.mp3" type="audio/mpeg" />
+    </audio>
+
     <script>
-      function mostrar() {
-        document.getElementById("final").style.display = "block";
+      const mensagens = [
+        "5.1… e ainda parece que começou ontem.",
+        "Desde aquele dia na adega…",
+        'quando você me chamou de "laranja" 🍊',
+        "e a gente deu aquele abraço que já parecia destino...",
+        "ali eu já sabia que era você.",
+        "Hoje a gente pedala junto…",
+        "e a vida ficou muito melhor com você.",
+      ];
+
+      let i = 0;
+      let j = 0;
+
+      function escrever() {
+        if (i < mensagens.length) {
+          if (j < mensagens[i].length) {
+            document.getElementById("texto").innerHTML +=
+              mensagens[i].charAt(j);
+            j++;
+            setTimeout(escrever, 35);
+          } else {
+            document.getElementById("texto").innerHTML += "<br><br>";
+            i++;
+            j = 0;
+            setTimeout(escrever, 800);
+          }
+        } else {
+          document.getElementById("final").style.display = "block";
+        }
       }
 
-      function musica() {
-        window.open("https://www.youtube.com/watch?v=nSDgHBxUbVQ", "_blank");
+      function fadeAudio(audio) {
+        audio.volume = 0;
+        let vol = 0;
+        let fade = setInterval(() => {
+          if (vol < 1) {
+            vol += 0.05;
+            audio.volume = vol;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+      }
+
+      function iniciar() {
+        const audio = document.getElementById("musica");
+
+        audio
+          .play()
+          .then(() => {
+            fadeAudio(audio);
+          })
+          .catch(() => {
+            console.log("bloqueado");
+          });
+
+        document.getElementById("btn").style.display = "none";
+
+        escrever();
       }
     </script>
   </body>
