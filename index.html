@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5.1 ❤️</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url("foto.jpg") no-repeat center center/cover;
+      }
+
+      .overlay {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 20px;
+        border-radius: 20px;
+        max-width: 350px;
+        animation: fadeIn 1.5s ease;
+      }
+
+      h1 {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1.1em;
+        line-height: 1.6;
+      }
+
+      .bike {
+        font-size: 40px;
+        margin: 15px 0;
+        animation: moveBike 4s infinite linear;
+      }
+
+      button {
+        background: white;
+        color: #ff4d6d;
+        border: none;
+        padding: 12px 18px;
+        border-radius: 20px;
+        font-size: 1em;
+        cursor: pointer;
+        margin: 10px 5px;
+      }
+
+      #final {
+        display: none;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      @keyframes moveBike {
+        0% {
+          transform: translateX(-60px);
+        }
+        50% {
+          transform: translateX(60px);
+        }
+        100% {
+          transform: translateX(-60px);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="overlay">
+      <h1>Tairine 💖</h1>
+
+      <p>5.1… e ainda parece que começou ontem.</p>
+
+      <p>
+        Desde aquele dia na adega , … quando você me chamou de
+        <strong>"laranja"</strong> 🍊 e a gente deu aquele abraço que já parecia
+        destino, eu ja tinha certeza que era, você !
+      </p>
+
+      <div class="bike">🚴‍♂️❤️🚴‍♀️</div>
+
+      <p>Hoje a gente pedala junto… e a vida ficou muito melhor com você.</p>
+
+      <button onclick="mostrar()">Clica aqui ❤️</button>
+      <button onclick="musica()">Ouvir nossa música 🎵</button>
+
+      <p id="final">
+        Eu te amo, Meu amor. E quero continuar pedalando a vida inteira ao seu
+        lado. ❤️
+      </p>
+    </div>
+
+    <script>
+      function mostrar() {
+        document.getElementById("final").style.display = "block";
+      }
+
+      function musica() {
+        window.open("https://www.youtube.com/watch?v=nSDgHBxUbVQ", "_blank");
+      }
+    </script>
+  </body>
+</html>
